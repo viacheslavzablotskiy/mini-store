@@ -2,10 +2,9 @@ import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtModule } from "@nestjs/jwt";
 import {StringValue} from 'ms'
-import { AuthMiddlewareClass } from "./utils/auth.middware";
 import { AuthController } from "./auth.controller";
-import { JwtStrategy } from "./utils/auth.guard";
-
+import { AuthService } from "./providers/auth.service";
+import { JwtStrategy } from "src/common/guards/common.auth.guard";
 
 @Module({
     imports: [
@@ -19,11 +18,7 @@ import { JwtStrategy } from "./utils/auth.guard";
     })
 ],
     controllers: [AuthController],
-    providers: [JwtStrategy],
+    providers: [AuthService, JwtStrategy],
     exports: []
 })
-export class AuthModule implements NestModule {
-    configure(consumer: MiddlewareConsumer) {
-        consumer.apply(AuthMiddlewareClass).exclude().forRoutes(AuthController)
-    }
-}
+export class AuthModule {}

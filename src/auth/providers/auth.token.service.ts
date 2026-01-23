@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { JwtService } from "@nestjs/jwt";
-import { TokenTypeData } from "src/common/request.extension.";
+import { TokenTypeData } from "src/common/types/express";
 import {StringValue} from 'ms'
 
 @Injectable()
