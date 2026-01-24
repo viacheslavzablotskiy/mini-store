@@ -17,6 +17,15 @@ export const Role = {
 export type Role = (typeof Role)[keyof typeof Role]
 
 
+export const Category = {
+  ELECTRONIC: 'ELECTRONIC',
+  CLOTHES: 'CLOTHES',
+  FOOD: 'FOOD'
+} as const
+
+export type Category = (typeof Category)[keyof typeof Category]
+
+
 export const Status = {
   PENDING: 'PENDING',
   CONFIRMED: 'CONFIRMED'

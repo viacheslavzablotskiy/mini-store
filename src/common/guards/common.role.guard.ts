@@ -15,12 +15,13 @@ export class RolesGuards implements CanActivate {
 
     canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
         const roles = this.reflector.getAllAndOverride(Roles, [
-            context.getHandler,
-            context.getClass
+            context.getHandler(),
+            context.getClass()
         ])
         if (!roles) return true
 
         const {user} = context.switchToHttp().getRequest<Request>()
+        
         if (!user || !roles.includes(user.role)) {
             throw new HttpException('you dont have enough permission', HttpStatus.FORBIDDEN)
         }

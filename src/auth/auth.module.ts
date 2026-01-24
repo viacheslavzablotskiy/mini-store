@@ -5,6 +5,7 @@ import {StringValue} from 'ms'
 import { AuthController } from "./auth.controller";
 import { AuthService } from "./providers/auth.service";
 import { JwtStrategy } from "src/common/guards/common.auth.guard";
+import { TokenService } from "./providers/auth.token.service";
 
 @Module({
     imports: [
@@ -18,7 +19,7 @@ import { JwtStrategy } from "src/common/guards/common.auth.guard";
     })
 ],
     controllers: [AuthController],
-    providers: [AuthService, JwtStrategy],
+    providers: [AuthService, JwtStrategy, TokenService],
     exports: []
 })
 export class AuthModule {}

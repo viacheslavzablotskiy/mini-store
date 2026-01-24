@@ -45,6 +45,7 @@ export type ProductMinAggregateOutputType = {
   price: number | null
   stock: number | null
   isDeleted: boolean | null
+  category: $Enums.Category | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -56,6 +57,7 @@ export type ProductMaxAggregateOutputType = {
   price: number | null
   stock: number | null
   isDeleted: boolean | null
+  category: $Enums.Category | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -67,6 +69,7 @@ export type ProductCountAggregateOutputType = {
   price: number
   stock: number
   isDeleted: number
+  category: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -92,6 +95,7 @@ export type ProductMinAggregateInputType = {
   price?: true
   stock?: true
   isDeleted?: true
+  category?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -103,6 +107,7 @@ export type ProductMaxAggregateInputType = {
   price?: true
   stock?: true
   isDeleted?: true
+  category?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -114,6 +119,7 @@ export type ProductCountAggregateInputType = {
   price?: true
   stock?: true
   isDeleted?: true
+  category?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -212,6 +218,7 @@ export type ProductGroupByOutputType = {
   price: number
   stock: number
   isDeleted: boolean
+  category: $Enums.Category
   createdAt: Date
   updatedAt: Date
   _count: ProductCountAggregateOutputType | null
@@ -246,6 +253,7 @@ export type ProductWhereInput = {
   price?: Prisma.FloatFilter<"Product"> | number
   stock?: Prisma.IntFilter<"Product"> | number
   isDeleted?: Prisma.BoolFilter<"Product"> | boolean
+  category?: Prisma.EnumCategoryFilter<"Product"> | $Enums.Category
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   orderItems?: Prisma.OrderItemListRelationFilter
@@ -258,6 +266,7 @@ export type ProductOrderByWithRelationInput = {
   price?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   orderItems?: Prisma.OrderItemOrderByRelationAggregateInput
@@ -273,6 +282,7 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<{
   price?: Prisma.FloatFilter<"Product"> | number
   stock?: Prisma.IntFilter<"Product"> | number
   isDeleted?: Prisma.BoolFilter<"Product"> | boolean
+  category?: Prisma.EnumCategoryFilter<"Product"> | $Enums.Category
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   orderItems?: Prisma.OrderItemListRelationFilter
@@ -285,6 +295,7 @@ export type ProductOrderByWithAggregationInput = {
   price?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ProductCountOrderByAggregateInput
@@ -304,6 +315,7 @@ export type ProductScalarWhereWithAggregatesInput = {
   price?: Prisma.FloatWithAggregatesFilter<"Product"> | number
   stock?: Prisma.IntWithAggregatesFilter<"Product"> | number
   isDeleted?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
+  category?: Prisma.EnumCategoryWithAggregatesFilter<"Product"> | $Enums.Category
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
 }
@@ -314,6 +326,7 @@ export type ProductCreateInput = {
   price: number
   stock?: number
   isDeleted?: boolean
+  category: $Enums.Category
   createdAt?: Date | string
   updatedAt?: Date | string
   orderItems?: Prisma.OrderItemCreateNestedManyWithoutProductInput
@@ -326,6 +339,7 @@ export type ProductUncheckedCreateInput = {
   price: number
   stock?: number
   isDeleted?: boolean
+  category: $Enums.Category
   createdAt?: Date | string
   updatedAt?: Date | string
   orderItems?: Prisma.OrderItemUncheckedCreateNestedManyWithoutProductInput
@@ -337,6 +351,7 @@ export type ProductUpdateInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orderItems?: Prisma.OrderItemUpdateManyWithoutProductNestedInput
@@ -349,6 +364,7 @@ export type ProductUncheckedUpdateInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   orderItems?: Prisma.OrderItemUncheckedUpdateManyWithoutProductNestedInput
@@ -361,6 +377,7 @@ export type ProductCreateManyInput = {
   price: number
   stock?: number
   isDeleted?: boolean
+  category: $Enums.Category
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -371,6 +388,7 @@ export type ProductUpdateManyMutationInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -382,6 +400,7 @@ export type ProductUncheckedUpdateManyInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -393,6 +412,7 @@ export type ProductCountOrderByAggregateInput = {
   price?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -410,6 +430,7 @@ export type ProductMaxOrderByAggregateInput = {
   price?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -421,6 +442,7 @@ export type ProductMinOrderByAggregateInput = {
   price?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   isDeleted?: Prisma.SortOrder
+  category?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -452,6 +474,10 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type EnumCategoryFieldUpdateOperationsInput = {
+  set?: $Enums.Category
+}
+
 export type ProductCreateNestedOneWithoutOrderItemsInput = {
   create?: Prisma.XOR<Prisma.ProductCreateWithoutOrderItemsInput, Prisma.ProductUncheckedCreateWithoutOrderItemsInput>
   connectOrCreate?: Prisma.ProductCreateOrConnectWithoutOrderItemsInput
@@ -472,6 +498,7 @@ export type ProductCreateWithoutOrderItemsInput = {
   price: number
   stock?: number
   isDeleted?: boolean
+  category: $Enums.Category
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -483,6 +510,7 @@ export type ProductUncheckedCreateWithoutOrderItemsInput = {
   price: number
   stock?: number
   isDeleted?: boolean
+  category: $Enums.Category
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -509,6 +537,7 @@ export type ProductUpdateWithoutOrderItemsInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -520,6 +549,7 @@ export type ProductUncheckedUpdateWithoutOrderItemsInput = {
   price?: Prisma.FloatFieldUpdateOperationsInput | number
   stock?: Prisma.IntFieldUpdateOperationsInput | number
   isDeleted?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  category?: Prisma.EnumCategoryFieldUpdateOperationsInput | $Enums.Category
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -562,6 +592,7 @@ export type ProductSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   price?: boolean
   stock?: boolean
   isDeleted?: boolean
+  category?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   orderItems?: boolean | Prisma.Product$orderItemsArgs<ExtArgs>
@@ -575,6 +606,7 @@ export type ProductSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   price?: boolean
   stock?: boolean
   isDeleted?: boolean
+  category?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["product"]>
@@ -586,6 +618,7 @@ export type ProductSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   price?: boolean
   stock?: boolean
   isDeleted?: boolean
+  category?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }, ExtArgs["result"]["product"]>
@@ -597,11 +630,12 @@ export type ProductSelectScalar = {
   price?: boolean
   stock?: boolean
   isDeleted?: boolean
+  category?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "price" | "stock" | "isDeleted" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+export type ProductOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "description" | "price" | "stock" | "isDeleted" | "category" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
 export type ProductInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   orderItems?: boolean | Prisma.Product$orderItemsArgs<ExtArgs>
   _count?: boolean | Prisma.ProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -621,6 +655,7 @@ export type $ProductPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     price: number
     stock: number
     isDeleted: boolean
+    category: $Enums.Category
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["product"]>
@@ -1053,6 +1088,7 @@ export interface ProductFieldRefs {
   readonly price: Prisma.FieldRef<"Product", 'Float'>
   readonly stock: Prisma.FieldRef<"Product", 'Int'>
   readonly isDeleted: Prisma.FieldRef<"Product", 'Boolean'>
+  readonly category: Prisma.FieldRef<"Product", 'Category'>
   readonly createdAt: Prisma.FieldRef<"Product", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Product", 'DateTime'>
 }

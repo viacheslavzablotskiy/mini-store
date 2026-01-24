@@ -1,5 +1,5 @@
 import { Body, Controller, Post, Res, UseFilters, UseGuards} from "@nestjs/common";
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiBody, ApiOperation, ApiResponse, ApiTags, ApiBearerAuth, ApiCookieAuth } from "@nestjs/swagger";
 import { LoginSwaggerReturnTypeData, LoginSwaggerTypeData, RegistSwaggerReturnTypeData, RegistSwaggerTypeData } from "src/common/types/auth-types/auth.types.swagger";
 import {type Request, type Response} from 'express'
 import {ValidationTypePipe} from '../common/pipes/common.pipe'
@@ -53,6 +53,8 @@ export class AuthController {
         }
     } 
 
+    @ApiBearerAuth('mini-store-auth')
+    @ApiCookieAuth()
     @ApiOperation({summary: 'Log out', description: 'Log out from your account'})
     @ApiResponse({status: 201, description: 'you successfully log out'})
     @Roles(['USER', 'ADMIN'])

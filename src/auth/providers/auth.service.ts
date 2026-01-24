@@ -26,7 +26,8 @@ export class AuthService {
 
     async register(data: RegisterTypData): Promise<User> {
         try {
-            return await this.prisma.user.create({data})
+            const passwordHash = await this.getHashPassword(data.password)
+            return await this.prisma.user.create({data: {...data, password: passwordHash}})
         } catch (error) {
             if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
                 throw new HttpException('User with this email or login already existed', HttpStatus.CONFLICT)   
@@ -37,7 +38,11 @@ export class AuthService {
 
     async login({email, password}: LoginTypeData): Promise<ReturnLoginType> {
         try {
+            console.log(email, password);
+            
             const user = await this.prisma.user.findUniqueOrThrow({where: {email: email}})
+            console.log(user);
+            
             const isValid = await this.compareHashes(password, user.password)
             if (!isValid) throw new HttpException('Invalid email or password', HttpStatus.UNAUTHORIZED)
 

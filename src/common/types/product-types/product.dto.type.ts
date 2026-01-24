@@ -1,5 +1,6 @@
+import { Category } from "src/generated/prisma/enums";
 import { NewProductTypeData } from "./product.type";
-import {IsString, IsInt, IsOptional, Min} from 'class-validator'
+import {IsString, IsInt, IsOptional, Min, IsEnum} from 'class-validator'
 
 
 
@@ -18,6 +19,9 @@ export class NewProductDto {
     @IsInt()
     @Min(0)
     price: number
+
+    @IsEnum(Category)
+    category: Category
 }
 
 
@@ -39,4 +43,8 @@ export class UpdateProductDto {
     @Min(0)
     @IsOptional()
     price?: number
+
+    @IsEnum(Category)
+    @IsOptional()
+    category?: Category
 }

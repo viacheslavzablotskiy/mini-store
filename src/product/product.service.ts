@@ -1,6 +1,6 @@
 import { HttpException, Injectable, NotFoundException } from "@nestjs/common";
 import { NewProductTypeData, UpdateProductTypeData } from "src/common/types/product-types/product.type";
-import { Prisma, Product } from "src/generated/prisma/client";
+import { Category, Prisma, Product } from "src/generated/prisma/client";
 import { PrismaService } from "src/prisma/prisma.service";
 
 
@@ -12,15 +12,15 @@ export class ProductService {
         private readonly prisma: PrismaService
     ) {}
 
-    async getProducts(): Promise<Product[]> {
+    async getProducts(category?: Category, lastId?: number): Promise<Product[]> {
         return this.prisma.product.findMany({
-            where: {isDeleted: false}, take: 20, orderBy: {id: 'asc'}
-        })
-    }
-
-    async getProductsAfter(lastId: number): Promise<Product[]> {
-        return this.prisma.product.findMany({
-            where: {id: {gt: lastId}, isDeleted: false}, take: 20, orderBy: {id: 'asc'}
+            where: {
+                ...(category ? {category: category}: {}),
+                ...(lastId ? {id: {gt: lastId}} : {}),
+                isDeleted: false
+            },
+            take: 20,
+            orderBy: {id: 'asc'}
         })
     }
 

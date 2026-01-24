@@ -1,4 +1,4 @@
-import { Order, Status } from "src/generated/prisma/client"
+import { Order, OrderItem, Status } from "src/generated/prisma/client"
 
 export class OrderSwaggerTypeData implements Order {
     id: number
@@ -18,4 +18,5 @@ export class OrderItemSwaggerTypeData {
 export class CreateNewOrderSwaggerTypeData {
     items: OrderItemSwaggerTypeData[]
 }
+
 
