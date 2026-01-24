@@ -10,6 +10,7 @@ import { ProductService } from "./product.service";
 import { Category, Product } from "src/generated/prisma/client";
 import {ValidationTypePipe} from '../common/pipes/common.pipe'
 import { NewProductDto, UpdateProductDto } from "src/common/types/product-types/product.dto.type";
+import { SkipThrottle, Throttle } from "@nestjs/throttler";
 
 
 @ApiTags('product')
@@ -17,6 +18,7 @@ import { NewProductDto, UpdateProductDto } from "src/common/types/product-types/
 @UseGuards(JwtAuthGuard, RolesGuards)
 @UseFilters(ExecptionFilter)
 @Controller('product')
+@Throttle({product: {ttl: 30_000, limit: 2}})
 export class ProductController {
 
     constructor(
@@ -29,6 +31,7 @@ export class ProductController {
     @ApiQuery({type: String, name: 'lastId', required: false, description: 'from what porduct i should start'})
     @ApiQuery({enum: Category, name: 'category', required: false, description: 'category of some product'})  
     @ApiResponse({type: ProductSwaggerTypeData, isArray: true, status: 200, description: 'list of the products:'})
+    @Throttle({default: {ttl: 60_000, limit: 10}})
     @Get('')
     async getPosts(
         @Query('lastId') lastId?: string,
@@ -52,6 +55,7 @@ export class ProductController {
     @ApiBody({type: NewProductSwaggerTypeData})
     @ApiResponse({type: ProductSwaggerTypeData, status: 201, description: 'product was successfully created'})
     @Roles(['ADMIN'])
+    @SkipThrottle()
     @Post()
     async createPost(@Body(new ValidationTypePipe()) dto: NewProductDto): Promise<Product> {
         return this.productService.createNewProduct(dto)
@@ -64,6 +68,7 @@ export class ProductController {
     @ApiParam({name: 'id', type: String, description: 'Product Id'})
     @ApiResponse({type: ProductSwaggerTypeData, status: 200, description: 'product was successfully created'})
     @Roles(['ADMIN'])
+    @SkipThrottle()
     @Patch(':id')
     async updatePost(@Param('id') id: string, @Body(new ValidationTypePipe()) dto: UpdateProductDto): Promise<Product> {
         return this.productService.updateProduct(Number(id), dto)
@@ -75,6 +80,7 @@ export class ProductController {
     @ApiParam({name: 'id', type: String, description: 'Product Id'})
     @ApiResponse({status: 204, description: 'you product was succesfully deleted'})
     @Roles(['ADMIN'])
+    @SkipThrottle()
     @Delete(':id')
     async deletePost(@Param('id') id: string): Promise<any> {
         return this.productService.deleteProduct(Number(id))

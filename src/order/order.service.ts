@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { CreateNewOrderTypeData } from "src/common/types/order-types/order.types";
 import { ReturnOrderTypeData } from "src/common/types/order-types/order.types";
-import { Order, Status, OrderItem } from "src/generated/prisma/client";
+import { Order, Status } from "src/generated/prisma/client";
 import { PrismaService } from "src/prisma/prisma.service";
 
 

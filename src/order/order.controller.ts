@@ -11,6 +11,7 @@ import { type Request } from "express";
 import {ValidationTypePipe} from '../common/pipes/common.pipe'
 import { CreateNewOrderDto } from "src/common/types/order-types/order.dto.types";
 import { Order } from "src/generated/prisma/client";
+import { Throttle } from "@nestjs/throttler";
 
 
 
@@ -19,6 +20,7 @@ import { Order } from "src/generated/prisma/client";
 @UseFilters(ExecptionFilter)
 @UseGuards(JwtAuthGuard, RolesGuards)
 @Controller('order')
+@Throttle({order: {ttl: 10_000, limit: 1}})
 export class OrderController {
 
     constructor(

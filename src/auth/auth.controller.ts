@@ -12,11 +12,13 @@ import { JwtAuthGuard } from "src/common/guards/common.auth.guard";
 import { Roles } from "src/common/guards/roles.decorators";
 import { RolesGuards } from "src/common/guards/common.role.guard";
 import { ExecptionFilter } from "src/common/filters/common.exception";
+import { Throttle } from "@nestjs/throttler";
 
 
 @ApiTags('auth-service')
 @UseFilters(ExecptionFilter)
 @Controller('auth')
+@Throttle({auth: {ttl: 60_000, limit: 10}})
 export class AuthController {
 
     constructor(
