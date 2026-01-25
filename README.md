@@ -32,8 +32,14 @@ JWT_EXPIRES_IN_REFRESH_TOKEN=<time> # срок жизни refresh-токена (
 JWT_REFRESH_SECRET=<refresh_jwt_token> # секрет для refresh-токена
 JWT_REFRESH_NAME=<name_refresh_token_cookie> # имя cookie для refresh-токена
 ```
-
-
+## Примените миграции базы данных
+```bash
+ npx prisma migrate deploy
+```
+## Создаёт актуальные типы и клиент для работы с базой данных
+```bash
+npx prisma generate
+```
 ## 🚀 Компиляция и запуск проекта 
 ```bash
  npm run dev 
