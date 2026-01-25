@@ -14,20 +14,23 @@ $ npm install
 # Порт, на котором будет работать приложение
 PORT=<port>
 
-# Подключение к базе данных PostgreSQL
-DATABASE_URL="postgresql://<user>:<password>@<postgresql(for Docker): localhost(for dev)>:5432/<db>?schema=public"
+# Подключение к базе данных PostgreSQL:
+# Локальная разработка
+DATABASE_URL="postgresql://<POSTGRES_USER>:<POSTGRES_PASSWORD>@localhost:5432/<POSTGRES_DB>?schema=public"
+# Запуск через Docker Compose (имя сервиса базы в docker-compose.yml)
+DATABASE_URL="postgresql://<POSTGRES_USER>:<POSTGRES_PASSWORD>@postgresql:5432/<POSTGRES_DB>?schema=public"
 
 # Данные для PostgreSQL
 POSTGRES_USER=<user>
-POSTGRES_PASSWORD=<passwrod>
+POSTGRES_PASSWORD=<password>
 POSTGRES_DB=<db>
 
 # Настройки JWT (токены авторизации)
-JWT_SECRET=<secret_token>
-JWT_EXPIRES_IN=<time>
-JWT_EXPIRES_IN_REFRESH_TOKEN=<time>
-JWT_REFRESH_SECRET=<refresh_jwt_token>
-JWT_REFRESH_NAME=<name_refresh_token_cookie>
+JWT_SECRET=<secret_token> # секрет для access-токена
+JWT_EXPIRES_IN=<time> # срок жизни access-токена (например: 8m, 1h)
+JWT_EXPIRES_IN_REFRESH_TOKEN=<time> # срок жизни refresh-токена (например: 7d)
+JWT_REFRESH_SECRET=<refresh_jwt_token> # секрет для refresh-токена
+JWT_REFRESH_NAME=<name_refresh_token_cookie> # имя cookie для refresh-токена
 ```
 
 
@@ -50,7 +53,6 @@ docker compose up
 ```bash
 npm run test
 ```
-
 
 ## Описание решения 
 ### Использованные технологии
