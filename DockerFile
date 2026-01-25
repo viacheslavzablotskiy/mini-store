@@ -1,0 +1,28 @@
+FROM node:24.11.1 AS first-step
+
+WORKDIR /ministore
+
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm ci
+
+COPY . .
+COPY prisma ./prisma
+RUN npx prisma generate
+RUN npm run build
+
+
+FROM node:24.11.1 AS second-step
+
+WORKDIR /ministore
+
+COPY --from=first-step /ministore/dist ./dist
+COPY ./src/generated /ministore/dist/src/generated
+COPY --from=first-step /ministore/prisma ./prisma 
+COPY prisma.config.ts ./prisma.config.ts
+COPY --from=first-step /ministore/package*.json ./
+COPY --from=first-step /ministore/node_modules ./node_modules
+
+RUN ls -R .
+
+CMD [ "node", "dist/src/main.js" ]

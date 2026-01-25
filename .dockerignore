@@ -1,0 +1,19 @@
+# node_modules we install over the building
+node_modules
+
+# логи
+*.log
+
+# temprorary files
+tmp
+dist/*.map
+
+# system files
+.DS_Store
+
+# git
+.git
+.gitignore
+
+# env
+.env

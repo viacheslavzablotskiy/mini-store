@@ -1,0 +1,24 @@
+services:
+  store: 
+    image: 'ministore'
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - postgresql
+    command: >
+      sh -c "npx prisma migrate deploy && node dist/src/main.js"
+  
+  postgresql: 
+    image: "postgres:15"
+    volumes:
+      - "postgresql_data:/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+
+
+volumes:
+  postgresql_data:

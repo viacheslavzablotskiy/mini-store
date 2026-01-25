@@ -1,4 +1,4 @@
-import { Category } from "src/generated/prisma/enums";
+import { Category } from "src/generated/prisma";
 import { NewProductTypeData } from "./product.type";
 import {IsString, IsInt, IsOptional, Min, IsEnum} from 'class-validator'
 
