@@ -16,11 +16,12 @@ PORT=<port>
 
 # Подключение к базе данных PostgreSQL:
 # Локальная разработка
+# Для локальной разработки достаточно указать только строку подключения `DATABASE_URL`:
 DATABASE_URL="postgresql://<POSTGRES_USER>:<POSTGRES_PASSWORD>@localhost:5432/<POSTGRES_DB>?schema=public"
+
 # Запуск через Docker Compose (имя сервиса базы в docker-compose.yml)
 DATABASE_URL="postgresql://<POSTGRES_USER>:<POSTGRES_PASSWORD>@postgresql:5432/<POSTGRES_DB>?schema=public"
-
-# Данные для PostgreSQL
+# В Docker Compose переменные POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB используются самим контейнером PostgreSQL для создания пользователя и базы при старте.
 POSTGRES_USER=<user>  # любое имя пользователя, которое вы задаёте для базы
 POSTGRES_PASSWORD=<password>  # любой пароль, который вы задаёте для этого пользователя
 POSTGRES_DB=<db>  # любое название базы данных, которое вы хотите использовать
