@@ -22,7 +22,7 @@ DATABASE_URL="postgresql://<POSTGRES_USER>:<POSTGRES_PASSWORD>@localhost:5432/<P
 # Запуск через Docker Compose (имя сервиса базы в docker-compose.yml)
 DATABASE_URL="postgresql://<POSTGRES_USER>:<POSTGRES_PASSWORD>@postgresql:5432/<POSTGRES_DB>?schema=public"
 # В Docker Compose переменные POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB используются самим контейнером PostgreSQL
-для создания пользователя и базы при старте.
+# для создания пользователя и базы при старте.
 POSTGRES_USER=<user>  # любое имя пользователя, которое вы задаёте для базы
 POSTGRES_PASSWORD=<password>  # любой пароль, который вы задаёте для этого пользователя
 POSTGRES_DB=<db>  # любое название базы данных, которое вы хотите использовать
