@@ -21,9 +21,9 @@ DATABASE_URL="postgresql://<POSTGRES_USER>:<POSTGRES_PASSWORD>@localhost:5432/<P
 DATABASE_URL="postgresql://<POSTGRES_USER>:<POSTGRES_PASSWORD>@postgresql:5432/<POSTGRES_DB>?schema=public"
 
 # Данные для PostgreSQL
-POSTGRES_USER=<user>
-POSTGRES_PASSWORD=<password>
-POSTGRES_DB=<db>
+POSTGRES_USER=<user>  # любое имя пользователя, которое вы задаёте для базы
+POSTGRES_PASSWORD=<password>  # любой пароль, который вы задаёте для этого пользователя
+POSTGRES_DB=<db>  # любое название базы данных, которое вы хотите использовать
 
 # Настройки JWT (токены авторизации)
 JWT_SECRET=<secret_token> # секрет для access-токена
